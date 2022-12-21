@@ -1,11 +1,8 @@
+import React from "react";
+import { AppRoutes } from "./routes";
+
 function App() {
-  return (
-    <div>
-      <header>
-        <p>Edit src/App.js and save to reload.</p>
-      </header>
-    </div>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
