@@ -1,0 +1,12 @@
+.container {
+  padding-left: 6rem;
+  padding-right: 6rem;
+  padding-top: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}

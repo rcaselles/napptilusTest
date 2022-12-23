@@ -5,6 +5,7 @@ import {
   fetchOoompaLoompas,
   reset,
 } from "../../slices/oompaLoompaSlice";
+import "./styles.css";
 
 function Homepage() {
   const dispatch = useDispatch();
@@ -18,21 +19,19 @@ function Homepage() {
     if ((today - expiryDate) / msInDay > 1) {
       dispatch(reset());
     }
+    //If store is empty we will need to load Data
     if (data.oompaLoompas.length === 0) {
       dispatch(fetchOoompaLoompas(data.page));
     }
   }, []);
 
-  console.log(data);
   return (
-    <div>
-      <header>
-        <p>Edit src/App.j5s and save to reload.</p>
-        <button onClick={() => dispatch(fetchOoompaLoompas(data.page))}>
-          asd
-        </button>
-        {data.oompaLoompas.length}
-      </header>
+    <div className="container">
+      <p>Edit src/App.j5s and save to reload.</p>
+      <button onClick={() => dispatch(fetchOoompaLoompas(data.page))}>
+        asd
+      </button>
+      {data.oompaLoompas.length}
     </div>
   );
 }
