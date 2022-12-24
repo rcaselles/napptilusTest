@@ -58,7 +58,8 @@
 .action-row {
   display: flex;
   justify-content: end;
-  margin-right: 50px;
+  padding-left: 35px;
+  padding-right: 35px;
 }
 
 .spinner {
@@ -88,43 +89,4 @@
   .profile {
     width: 100%;
   }
-}
-
-.search-btn {
-  width: 40px;
-  border: 1px solid transparent;
-  background: transparent
-    url("https://s3.eu-central-1.amazonaws.com/napptilus/level-test/imgs/ic_search.png")
-    no-repeat center;
-  background-size: 50%;
-  cursor: pointer;
-  opacity: 0.7;
-  border-left: 1px solid lightgray;
-}
-
-.search-btn:hover {
-  opacity: 1;
-}
-
-.search-form {
-  color: lightgray;
-  display: flex;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  margin-right: 25px;
-}
-
-.search-bar {
-  border: none;
-  background: transparent;
-  font-size: 14px;
-  color: inherit;
-  border: 1px solid transparent;
-  border-right: 1px lightgray;
-}
-.search-btn:focus,
-.search-bar:focus {
-  box-shadow: 0 0 3px 0 #1183d6;
-  border-color: #1183d6;
-  outline: none;
 }

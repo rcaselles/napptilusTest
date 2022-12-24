@@ -13,6 +13,7 @@ function Homepage() {
   const dispatch = useDispatch();
   const data = useSelector(selectAllOompaLoompas);
   const [oompaLoompas, setOompaLoompas] = useState([]);
+  const [filterValue, setFilterValue] = useState("");
 
   useEffect(() => {
     const expiryDate = new Date(data.expiryDate);
@@ -42,13 +43,33 @@ function Homepage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [data]);
 
+  useEffect(() => {
+    if (filterValue !== "") {
+      setOompaLoompas(
+        data.oompaLoompas.filter(
+          (element) =>
+            element.first_name
+              .toLowerCase()
+              .includes(filterValue.toLowerCase()) ||
+            element.last_name
+              .toLowerCase()
+              .includes(filterValue.toLowerCase()) ||
+            element.profession.toLowerCase().includes(filterValue.toLowerCase())
+        )
+      );
+    } else {
+      setOompaLoompas(data.oompaLoompas);
+    }
+  }, [filterValue, data]);
+
   return (
     <div className="container">
       <div className="action-row">
-        <div className="search-form">
-          <Input placeholder="Search" className="search-bar" />
-          <button className="search-btn" />
-        </div>
+        <Input
+          placeholder="Search"
+          value={filterValue}
+          onChange={(event) => setFilterValue(event.target.value)}
+        />
       </div>
       <div className="heading">
         <h1 className="heading-centered">Find your Ooompa Loompa</h1>
