@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "../../components/Card";
+import { Input } from "../../components/Input";
 import {
   selectAllOompaLoompas,
   fetchOoompaLoompas,
@@ -11,6 +12,7 @@ import "./styles.css";
 function Homepage() {
   const dispatch = useDispatch();
   const data = useSelector(selectAllOompaLoompas);
+  const [oompaLoompas, setOompaLoompas] = useState([]);
 
   useEffect(() => {
     const expiryDate = new Date(data.expiryDate);
@@ -35,19 +37,25 @@ function Homepage() {
   };
 
   useEffect(() => {
+    setOompaLoompas(data.oompaLoompas);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, [data]);
 
   return (
     <div className="container">
-      <div className="action-row">a</div>
+      <div className="action-row">
+        <div className="search-form">
+          <Input placeholder="Search" className="search-bar" />
+          <button className="search-btn" />
+        </div>
+      </div>
       <div className="heading">
         <h1 className="heading-centered">Find your Ooompa Loompa</h1>
         <h2 className="text-muted">There are more than 100k</h2>
       </div>
       <div className="list">
-        {data.oompaLoompas.map((oompaLoompa, index) => (
+        {oompaLoompas.map((oompaLoompa, index) => (
           <Card>
             <div className="card-body">
               <img
