@@ -18,12 +18,12 @@
 .header-title {
   flex-wrap: wrap;
   font-size: larger;
-  margin-left: 25px;
+  padding-left: 45px;
 }
 
 @media only screen and (max-width: 600px) {
   .header-title {
-    margin-left: 10px;
+    padding-left: 10px;
   }
   .header {
     padding-left: 75px;

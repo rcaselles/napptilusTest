@@ -14,9 +14,10 @@ export const fetchOoompaLoompas = createAsyncThunk(
 const initialState = {
   oompaLoompas: [],
   expiryDate: new Date(
-    new Date().setDate(new Date().getDate() + 7)
+    new Date().setDate(new Date().getDate() + 1)
   ).toISOString(),
   page: 1,
+  loading: false,
 };
 
 const oompaLoompaSlice = createSlice({
@@ -27,22 +28,26 @@ const oompaLoompaSlice = createSlice({
       state.oompaLoompas = [];
       state.page = 1;
       state.expiryDate = new Date(
-        new Date().setDate(new Date().getDate() + 7)
+        new Date().setDate(new Date().getDate() + 1)
       ).toISOString();
       localStorage.removeItem("persist:root");
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchOoompaLoompas.pending, (state, action) => {
+      state.loading = true;
+    });
     builder.addCase(fetchOoompaLoompas.fulfilled, (state, action) => {
       const data = action.payload;
       state.oompaLoompas =
         state.oompaLoompas.length === 0
           ? data
-          : [...data, ...state.oompaLoompas];
+          : [...state.oompaLoompas, ...data];
       state.expiryDate = new Date(
         new Date().setDate(new Date().getDate() + 7)
       ).toISOString();
       state.page += 1;
+      state.loading = false;
     });
   },
 });
