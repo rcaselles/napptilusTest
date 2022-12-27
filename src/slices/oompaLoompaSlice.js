@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchOoompaLoompas = createAsyncThunk(
-  "users/fetchOompaLoompa",
+  "users/fetchOompaLoompas",
   async (page) => {
     const response = await axios.get(
       `https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas?page=${page}`
@@ -12,7 +12,7 @@ export const fetchOoompaLoompas = createAsyncThunk(
 );
 
 const initialState = {
-  oompaLoompas: [],
+  oompaLoompasList: [],
   expiryDate: new Date(
     new Date().setDate(new Date().getDate() + 1)
   ).toISOString(),
@@ -21,11 +21,11 @@ const initialState = {
 };
 
 const oompaLoompaSlice = createSlice({
-  name: "oompaLoompa",
+  name: "oompaLoompas",
   initialState,
   reducers: {
     reset: (state) => {
-      state.oompaLoompas = [];
+      state.oompaLoompasList = [];
       state.page = 1;
       state.expiryDate = new Date(
         new Date().setDate(new Date().getDate() + 1)
@@ -39,12 +39,12 @@ const oompaLoompaSlice = createSlice({
     });
     builder.addCase(fetchOoompaLoompas.fulfilled, (state, action) => {
       const data = action.payload;
-      state.oompaLoompas =
-        state.oompaLoompas.length === 0
+      state.oompaLoompasList =
+        state.oompaLoompasList.length === 0
           ? data
-          : [...state.oompaLoompas, ...data];
+          : [...state.oompaLoompasList, ...data];
       state.expiryDate = new Date(
-        new Date().setDate(new Date().getDate() + 7)
+        new Date().setDate(new Date().getDate() + 1)
       ).toISOString();
       state.page += 1;
       state.loading = false;
@@ -53,6 +53,5 @@ const oompaLoompaSlice = createSlice({
 });
 
 export const { reset } = oompaLoompaSlice.actions;
-export const selectAllOompaLoompas = (state) => state.persistedReducer;
 
 export default oompaLoompaSlice.reducer;

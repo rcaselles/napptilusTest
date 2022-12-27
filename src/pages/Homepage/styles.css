@@ -15,7 +15,6 @@
 }
 
 .text-muted {
-  text-align: center;
   font-weight: normal;
   color: #6c757d;
   margin: 0;
@@ -57,7 +56,7 @@
 
 .action-row {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding-left: 35px;
   padding-right: 35px;
 }
