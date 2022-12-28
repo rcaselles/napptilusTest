@@ -69,6 +69,7 @@ function Homepage() {
       <div className="action-row">
         <Input
           placeholder="Search"
+          className="search-icon"
           value={filterValue}
           onChange={(event) => setFilterValue(event.target.value)}
         />
